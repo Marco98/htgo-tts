@@ -86,3 +86,11 @@ func (speech *Speech) play(fileName string) error {
 	mplayer := exec.Command("mplayer", "-cache", "8092", "-", fileName)
 	return mplayer.Run()
 }
+
+/**
+ * Play voice file with modified speed.
+ */
+func (speech *Speech) playScaled(fileName string, speed float64) error {
+	mplayer := exec.Command("mplayer", "-cache", "8092", "-af", "scaletempo", "-speed", speed, "-", fileName)
+	return mplayer.Run()
+}
