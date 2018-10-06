@@ -42,7 +42,7 @@ func (speech *Speech) Speak(text string) error {
 }
 
 // Speak downloads speech and plays it scaled using mplayer
-func (speech *Speech) Speak(text string, speed float64) error {
+func (speech *Speech) SpeakScaled(text string, speed float64) error {
 
 	fileName := speech.Folder + "/" + text + ".mp3"
 
