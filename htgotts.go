@@ -41,6 +41,22 @@ func (speech *Speech) Speak(text string) error {
 	return speech.play(fileName)
 }
 
+// Speak downloads speech and plays it scaled using mplayer
+func (speech *Speech) Speak(text string, speed float64) error {
+
+	fileName := speech.Folder + "/" + text + ".mp3"
+
+	var err error
+	if err = speech.createFolderIfNotExists(speech.Folder); err != nil {
+		return err
+	}
+	if err = speech.downloadIfNotExists(fileName, text); err != nil {
+		return err
+	}
+
+	return speech.playScaled(fileName, speed)
+}
+
 /**
  * Create the folder if does not exists.
  */
