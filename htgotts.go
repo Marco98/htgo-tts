@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"strconv"
 )
 
 /**
@@ -91,6 +92,6 @@ func (speech *Speech) play(fileName string) error {
  * Play voice file with modified speed.
  */
 func (speech *Speech) playScaled(fileName string, speed float64) error {
-	mplayer := exec.Command("mplayer", "-cache", "8092", "-af", "scaletempo", "-speed", speed, "-", fileName)
+	mplayer := exec.Command("mplayer", "-cache", "8092", "-af", "scaletempo", "-speed", strconv.FormatFloat(speed, 'f', 6, 64), "-", fileName)
 	return mplayer.Run()
 }
